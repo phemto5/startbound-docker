@@ -1,1 +1,18 @@
-
+version: "3"
+services:
+  starbound:
+    networks:
+      - vmnw
+    build: .
+    container_name: starbound
+    hostname: starbound
+    restart: unless-stopped
+    ports:
+      - "21025"
+    volumes:
+      - /mnt/data/starbound/data:/server/steamcmd/starbound
+    env_file: starbound.env
+networks:
+  vmnw:
+    external:
+      name: vm_nw
